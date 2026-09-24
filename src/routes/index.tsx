@@ -69,6 +69,23 @@ const chapters = [
 
 function goTo(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); }
 
+async function copyEmail(emailAddress: string) {
+  try {
+    await navigator.clipboard.writeText(emailAddress);
+    return true;
+  } catch {
+    const input = document.createElement("textarea");
+    input.value = emailAddress;
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+    document.body.appendChild(input);
+    input.select();
+    const copied = document.execCommand("copy");
+    input.remove();
+    return copied;
+  }
+}
+
 const motes = Array.from({ length: 16 }, (_, i) => ({ left: `${(i * 41 + 7) % 100}%`, top: `${(i * 57 + 11) % 90}%`, delay: `${-(i * 1.3)}s`, dur: `${9 + (i % 6)}s`, size: 2 + (i % 3) }));
 
 type SceneProps = {
@@ -303,7 +320,7 @@ function Portfolio() {
           </form>
         </Reveal>
         <Reveal delay={0.3} className="contact-links">
-          <button type="button" onClick={async () => { await navigator.clipboard.writeText(email); setCopied(true); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
+          <button type="button" onClick={async () => { const didCopy = await copyEmail(email); setCopied(didCopy); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
           <a href={github} target="_blank" rel="noopener noreferrer"><Github /> GitHub</a>
           <a href={linkedIn} target="_blank" rel="noopener noreferrer"><Linkedin /> LinkedIn</a>
           <a href={iitMadras} target="_blank" rel="noopener noreferrer"><GraduationCap /> IIT Madras</a>
