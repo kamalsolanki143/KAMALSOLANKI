@@ -2,19 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Check, Copy, Github, GraduationCap, Linkedin, Mail, Menu, Send, ShieldCheck, X } from "lucide-react";
-import cityImg from "@/assets/reference-city.jpg";
-import waterfallImg from "@/assets/reference-waterfall.jpg";
-import industrialImg from "@/assets/reference-industrial.jpg";
-import sunsetImg from "@/assets/reference-sunset.jpg";
-import fantasyCity from "@/assets/cinematic-mountain-city.jpg";
-import fantasyHall from "@/assets/cinematic-waterfall-hall.jpg";
-import fantasyTemple from "@/assets/cinematic-river-temple.jpg";
+import cityImg from "@/assets/reference-city.webp";
+import waterfallImg from "@/assets/reference-waterfall.webp";
+import industrialImg from "@/assets/reference-industrial.webp";
+import sunsetImg from "@/assets/reference-sunset.webp";
+import fantasyCity from "@/assets/cinematic-mountain-city.webp";
+import fantasyHall from "@/assets/cinematic-waterfall-hall.webp";
+import fantasyTemple from "@/assets/cinematic-river-temple.webp";
 import bridgeLayer from "@/assets/layer-bridge.webp";
 import cloudLayer from "@/assets/layer-clouds.webp";
 import rockLayer from "@/assets/layer-foreground.webp";
 import portrait from "@/assets/kamal-portrait-sharp.jpg.asset.json";
 
-const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369";
+const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369/";
 const github = "https://github.com/kamalsolanki143";
 const email = "solankikamal55143@gmail.com";
 const iitMadras = "https://study.iitm.ac.in/ds/";
@@ -22,7 +22,7 @@ const iitMadras = "https://study.iitm.ac.in/ds/";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kamal Solanki — Enter the World · AI, Data Science & Full-Stack" },
+      { title: "Kamal Solanki — AI & Data Science Builder" },
       { name: "description", content: "Travel through the cinematic world of Kamal Solanki — IIT Madras Data Science student, AI builder, hackathon finalist and open-source contributor." },
       { property: "og:title", content: "Kamal Solanki — Enter the World" },
       { property: "og:description", content: "An immersive 2.5D portfolio journey through Kamal Solanki's skills, projects, achievements and IIT Madras path." },
@@ -147,7 +147,6 @@ function Portfolio() {
   const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState(projects[0]!.title);
   const [copied, setCopied] = useState(false);
-  const [sent, setSent] = useState(false);
   const { scrollYProgress } = useScroll();
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroP } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -161,6 +160,14 @@ function Portfolio() {
     chapters.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
   }, []);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
   const activeIndex = chapters.findIndex(([id]) => id === active);
 
   return (
@@ -168,10 +175,10 @@ function Portfolio() {
       <motion.div className="travel-line" style={{ scaleX: scrollYProgress }} />
       <header className="world-nav">
         <button type="button" className="wordmark" onClick={() => goTo("home")}>K · Solanki</button>
-        <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Chapters">
+        <nav id="chapter-menu" className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Chapters">
           {chapters.slice(1).map(([id, label]) => <button type="button" key={id} className={active === id ? "on" : ""} onClick={() => { goTo(id); setMenuOpen(false); }}>{label}</button>)}
         </nav>
-        <button type="button" className="nav-toggle" aria-label="Open chapters" onClick={() => setMenuOpen((v) => !v)}>{menuOpen ? <X /> : <Menu />}</button>
+        <button type="button" className="nav-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="chapter-menu" onClick={() => setMenuOpen((v) => !v)}>{menuOpen ? <X /> : <Menu />}</button>
       </header>
       <aside className="chapter-rail" aria-hidden>
         <b>{String(activeIndex + 1).padStart(2, "0")}</b><i /><span>{chapters[activeIndex]?.[1]}</span><em>/ 08</em>
@@ -184,7 +191,7 @@ function Portfolio() {
             <motion.p className="chapter-label" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 1 }}><span>01</span>World entry</motion.p>
             <HeroTitle />
             <motion.p className="hero-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 1 }}>
-              AI & Data Science builder · Full-stack developer<br /><span>BS Data Science & Applications — IIT Madras</span>
+              AI & Data Science builder · Student developer<br /><span>BS Data Science & Applications — IIT Madras</span>
             </motion.p>
             <motion.div className="hero-actions" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.45, duration: 1 }}>
               <button type="button" className="cta primary" onClick={() => goTo("about")}>Enter the world <ArrowDown /></button>
@@ -210,11 +217,11 @@ function Portfolio() {
           </Reveal>
           <div className="about-text">
             <Heading n="02" label="Who I am" title="Bridging software" em="& quantitative data science." />
-            <Reveal delay={0.1}><p className="lede">I’m Kamal — a Foundation Level student in IIT Madras’ BS in Data Science & Applications, combining statistics and mathematics with AI and full-stack engineering to build things that solve real problems.</p></Reveal>
+            <Reveal delay={0.1}><p className="lede">I’m Kamal — a Foundation Level student in IIT Madras’ BS in Data Science & Applications, combining statistics and mathematics with AI and software engineering to build things that solve real problems.</p></Reveal>
             <Reveal delay={0.2} className="inscriptions">
               <div><small>Studying</small><p>Foundation Level · Data Science · Mathematics · Computational Thinking · English</p></div>
               <div><small>Mission</small><p>Accessible, reliable, data-driven software through hands-on building.</p></div>
-              <div><small>Profile</small><p>IIT Madras Student · AI & Data Science Learner · Full-Stack Project Builder · Hackathon & Open-Source Enthusiast</p></div>
+              <div><small>Profile</small><p>IIT Madras Student · AI & Data Science Builder · Student Developer · Hackathon Finalist · Open-Source Contributor</p></div>
             </Reveal>
           </div>
         </div>
@@ -263,7 +270,7 @@ function Portfolio() {
       <WorldScene id="achievements" bg={fantasyCity} className="scene-achievements" rocks="both" clouds>
         <Heading n="05" label="Impact" title="Signals across" em="the world." />
         <Reveal className="finalist">
-          <b>2×</b><div><span>Hackathon Finalist</span><p>BuildX'26 · Compasscrew-v2v</p></div>
+          <b>2×</b><div><span>Hackathon Finalist</span><p><a href={`${github}/TalentOS-AI-BuildX26`} target="_blank" rel="noopener noreferrer">BuildX'26 ↗</a><a href={`${github}/Compasscrew-v2v`} target="_blank" rel="noopener noreferrer">Compasscrew-v2v ↗</a></p></div>
         </Reveal>
         <div className="lantern-path">
           {achievements.map((a, i) => (
@@ -312,19 +319,19 @@ function Portfolio() {
         <Heading n="08" label="Final destination" title="Let’s build" em="something together." />
         <Reveal delay={0.1}><p className="lede center">Open to internships, AI projects, hackathons, research, startups and open-source collaboration.</p></Reveal>
         <Reveal delay={0.2}>
-          <form className="horizon-form" onSubmit={(e) => { e.preventDefault(); const d = new FormData(e.currentTarget); const name = String(d.get("name") ?? ""); const from = String(d.get("email") ?? ""); const msg = String(d.get("message") ?? ""); setSent(true); window.location.href = `mailto:${email}?subject=${encodeURIComponent(`Portfolio enquiry from ${name}`)}&body=${encodeURIComponent(`${msg}\n\nFrom: ${name} (${from})`)}`; }}>
+           <form className="horizon-form" onSubmit={(e) => { e.preventDefault(); const d = new FormData(e.currentTarget); const name = String(d.get("name") ?? ""); const from = String(d.get("email") ?? ""); const msg = String(d.get("message") ?? ""); window.location.href = `mailto:${email}?subject=${encodeURIComponent(`Portfolio enquiry from ${name}`)}&body=${encodeURIComponent(`${msg}\n\nFrom: ${name} (${from})`)}`; }}>
             <input required name="name" aria-label="Your name" placeholder="Your name" maxLength={100} />
             <input required type="email" name="email" aria-label="Your email" placeholder="Your email" maxLength={255} />
             <textarea required name="message" aria-label="Message" placeholder="Tell me about your idea" rows={2} maxLength={2000} />
-            <button type="submit" className="cta primary">{sent ? "Message ready" : "Send message"} <Send /></button>
+             <button type="submit" className="cta primary" aria-label="Open an email draft to Kamal Solanki">Send by email <Send /></button>
           </form>
         </Reveal>
         <Reveal delay={0.3} className="contact-links">
-          <button type="button" onClick={async () => { setCopied(true); await copyEmail(email); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
-          <a href={github} target="_blank" rel="noopener noreferrer"><Github /> GitHub</a>
-          <a href={linkedIn} target="_blank" rel="noopener noreferrer"><Linkedin /> LinkedIn</a>
-          <a href={iitMadras} target="_blank" rel="noopener noreferrer"><GraduationCap /> IIT Madras</a>
-          <a href={`mailto:${email}`}><Mail /> Email</a>
+          <button type="button" aria-label="Copy Kamal Solanki's email address" onClick={async () => { setCopied(true); await copyEmail(email); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
+          <a href={github} target="_blank" rel="noopener noreferrer" aria-label="Open Kamal Solanki GitHub profile"><Github /> GitHub</a>
+          <a href={linkedIn} target="_blank" rel="noopener noreferrer" aria-label="Open Kamal Solanki LinkedIn profile"><Linkedin /> LinkedIn</a>
+          <a href={iitMadras} target="_blank" rel="noopener noreferrer" aria-label="Open the official IIT Madras Data Science programme"><GraduationCap /> IIT Madras</a>
+          <a href={`mailto:${email}`} aria-label="Email Kamal Solanki"><Mail /> Email</a>
         </Reveal>
         <footer className="world-foot"><span>Kamal Solanki · 2026</span><button type="button" onClick={() => goTo("home")}>Back to the beginning ↑</button></footer>
       </WorldScene>

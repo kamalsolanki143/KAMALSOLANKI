@@ -19,3 +19,8 @@
 - [x] Remove Statistics 1 and inaccurate education milestones
 - [x] Correct identity, project, contact, and navigation links/interactions
 - [x] Click-test desktop and mobile flows, then complete the final content audit
+
+- [ ] Remove all inaccurate full-stack positioning
+- [ ] Polish intentional layouts from 320px through 1920px
+- [ ] Audit keyboard, touch, reduced-motion, contact, and every real link
+- [ ] Optimize cinematic scene images without changing the artwork
