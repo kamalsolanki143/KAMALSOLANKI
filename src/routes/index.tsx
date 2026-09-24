@@ -119,7 +119,7 @@ function Portfolio() {
     </header>
 
     <Scene id="home" image={mountainCity} number="00" align="left" className="opening-scene hero-with-portrait" aside={
-      <motion.div className="hero-portrait" initial={{ opacity: 0, x: 80, rotateY: -25, scale: 0.9 }} animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
+      <motion.div className="hero-portrait" initial={{ opacity: 0, x: 80, rotateY: -25, scale: 0.9 }} animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} transformTemplate={(_, g) => (g === "none" || g.includes("translateX(0px)") && !g.includes("rotateY(-") && !g.includes("scale(0.") ? "none" : g)} transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
         <motion.div className="hero-portrait-inner" animate={{ y: [0, -16, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
           <span className="hero-halo" aria-hidden /><span className="portrait-ring" aria-hidden />
           <img src={portrait.url} alt="Kamal Solanki" />
@@ -136,7 +136,7 @@ function Portfolio() {
 
     <Scene id="about" image={waterfallHall} number="01" align="left" className="about-world">
       <motion.figure className="portrait-card" initial={{ opacity: 0, y: 60, rotateY: -18 }} whileInView={{ opacity: 1, y: 0, rotateY: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
-        <motion.div className="portrait-float" animate={{ y: [0, -14, 0], rotate: [-1.5, 1.5, -1.5] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div className="portrait-float" animate={{ y: [0, -14, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
           <span className="portrait-ring" aria-hidden />
           <img src={portrait.url} alt="Kamal Solanki portrait" loading="lazy" />
           <figcaption><Sparkles /> Kamal Solanki · IIT Madras</figcaption>
