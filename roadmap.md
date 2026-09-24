@@ -11,3 +11,6 @@
 - [x] Video-style motion: camera drift, parallax depth, water/mist/fireflies, scene transitions
 - [x] Hero letter reveal, glow, scroll indicator; card tilt + stagger
 - [x] Comfortable on phone, tablet, desktop, large screens
+
+- [x] Tab icon from Kamal's face; sharper portrait
+- [x] Rebuild as continuous 2.5D world (bg/clouds/mid/content/foreground layers, 8 chapters, no card grids, no WebGL)
