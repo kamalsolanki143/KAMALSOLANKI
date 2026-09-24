@@ -6,4 +6,4 @@
 - [x] Verify mobile layout and central interactions
 
 - [x] Rebuild against the exact pixel-art reference framing and scene language
-- [ ] Verify rebuilt desktop and mobile experience
+- [x] Verify rebuilt desktop and mobile experience
