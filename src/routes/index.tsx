@@ -3,10 +3,10 @@ import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } fr
 import { lazy, Suspense, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Award, BookOpen, Check, ChevronDown, Code2, Copy, Github, GraduationCap, Linkedin, Mail, MapPin, Menu, Rocket, Send, ShieldCheck, Sparkles, Users, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import mountainCity from "@/assets/cinematic-mountain-city.jpg";
-import waterfallHall from "@/assets/cinematic-waterfall-hall.jpg";
-import industrialGallery from "@/assets/cinematic-industrial-gallery.jpg";
-import riverTemple from "@/assets/cinematic-river-temple.jpg";
+import mountainCity from "@/assets/reference-city.jpg";
+import waterfallHall from "@/assets/reference-waterfall.jpg";
+import industrialGallery from "@/assets/reference-industrial.jpg";
+import riverTemple from "@/assets/reference-sunset.jpg";
 
 const PortfolioScene = lazy(() => import("@/components/portfolio-scene"));
 const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369";
@@ -60,10 +60,15 @@ function Scene({ id, image, number, children, align = "left", className = "" }: 
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], reduced ? [1, 1, 1] : [1.16, 1, 1.12]);
   const y = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["-5%", "5%"]);
   return <section ref={ref} id={id} className={`cinematic-scene scene-${align} ${className}`}>
-    <motion.img src={image} alt="" width={1920} height={1080} loading={id === "home" ? "eager" : "lazy"} className="scene-image" style={{ scale, y }} />
-    <div className="scene-depth-layer" /><div className="scene-shade" /><div className="mist mist-a" /><div className="mist mist-b" />
-    <div className="scene-index"><span>{number}</span><i /></div>
-    <motion.div className="scene-content" initial={{ opacity: 0, y: 48, scale: 0.97 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ amount: 0.18 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>
+    <motion.div className="presentation-frame" initial={{ opacity: 0, scale: 0.92, rotateX: 3 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0 }} viewport={{ amount: 0.16 }} transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}>
+      <div className="frame-topline"><span className="frame-mark">▲</span><span>{number} / 07</span></div>
+      <div className="scene-visual">
+        <motion.img src={image} alt="" width={1536} height={1024} loading={id === "home" ? "eager" : "lazy"} className="scene-image" style={{ scale, y }} />
+        <div className="scene-depth-layer" /><div className="scene-shade" /><div className="mist mist-a" /><div className="mist mist-b" />
+      </div>
+      <motion.div className="scene-content" initial={{ opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.78, delay: 0.16 }}>{children}</motion.div>
+      <div className="scene-index"><span>{number}</span><i /></div>
+    </motion.div>
   </section>;
 }
 
