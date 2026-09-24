@@ -15,7 +15,7 @@
 - [x] Tab icon from Kamal's face; sharper portrait
 - [x] Rebuild as continuous 2.5D world (bg/clouds/mid/content/foreground layers, 8 chapters, no card grids, no WebGL)
 
-- [ ] Audit repository-backed project facts and destinations
-- [ ] Remove Statistics 1 and inaccurate education milestones
-- [ ] Correct identity, project, contact, and navigation links/interactions
-- [ ] Click-test desktop and mobile flows, then complete the final content audit
+- [x] Audit repository-backed project facts and destinations
+- [x] Remove Statistics 1 and inaccurate education milestones
+- [x] Correct identity, project, contact, and navigation links/interactions
+- [x] Click-test desktop and mobile flows, then complete the final content audit
