@@ -70,7 +70,7 @@ function Scene({ id, image, number, children, align = "left", className = "" }: 
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("All");
-  const [expanded, setExpanded] = useState<string | null>(projects[0].title);
+  const [expanded, setExpanded] = useState<string | null>(projects[0]?.title ?? null);
   const [copied, setCopied] = useState(false);
   const [sent, setSent] = useState(false);
   const { scrollYProgress } = useScroll();

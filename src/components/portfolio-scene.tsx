@@ -1,20 +1,21 @@
 import { Float, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
-import type { Group, Mesh } from "three";
+import type { Group, Mesh, MeshStandardMaterial } from "three";
 import * as THREE from "three";
 
 function WaterRibbon({ x, z, phase }: { x: number; z: number; phase: number }) {
   const ribbon = useRef<Mesh>(null);
+  const material = useRef<MeshStandardMaterial>(null);
   useFrame(({ clock }) => {
     if (!ribbon.current) return;
     ribbon.current.position.y = Math.sin(clock.elapsedTime * 0.8 + phase) * 0.08 - 1.8;
-    ribbon.current.material.opacity = 0.16 + Math.sin(clock.elapsedTime + phase) * 0.035;
+    if (material.current) material.current.opacity = 0.16 + Math.sin(clock.elapsedTime + phase) * 0.035;
   });
   return (
     <mesh ref={ribbon} position={[x, -1.8, z]} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[1.45, 15, 12, 40]} />
-      <meshStandardMaterial color="#7dd8ff" emissive="#3f8dff" emissiveIntensity={1.2} transparent opacity={0.18} roughness={0.08} metalness={0.55} side={THREE.DoubleSide} />
+      <meshStandardMaterial ref={material} color="#7dd8ff" emissive="#3f8dff" emissiveIntensity={1.2} transparent opacity={0.18} roughness={0.08} metalness={0.55} side={THREE.DoubleSide} />
     </mesh>
   );
 }
