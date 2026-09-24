@@ -28,7 +28,7 @@
 ::selection { background: color-mix(in oklab, var(--accent) 55%, transparent); color: var(--foreground); }
 .world-shell { position: relative; min-height: 100vh; background: var(--night); overflow: clip; }
 .world-canvas { position: fixed; z-index: 6; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: .92; }
-.world-canvas canvas { pointer-events: none !important; }
+.world-canvas, .world-canvas * { pointer-events: none !important; }
 .scroll-line { position: fixed; z-index: 100; inset: 0 auto auto 0; width: 100%; height: 2px; transform-origin: left; background: var(--primary); box-shadow: 0 0 20px var(--primary); }
 .minimal-nav { position: fixed; z-index: 90; top: 0; left: 0; right: 0; height: 68px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 3.5vw; background: linear-gradient(to bottom, color-mix(in oklab, var(--night) 88%, transparent), transparent); backdrop-filter: blur(3px); }
 .wordmark { justify-self: start; padding-inline: 0; color: var(--foreground); font-size: 11px; text-transform: uppercase; }.nav-sigil { grid-column: 2; color: var(--primary); filter: drop-shadow(0 0 9px var(--primary)); }
