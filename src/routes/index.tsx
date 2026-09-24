@@ -7,6 +7,7 @@ import mountainCity from "@/assets/reference-city.jpg";
 import waterfallHall from "@/assets/reference-waterfall.jpg";
 import industrialGallery from "@/assets/reference-industrial.jpg";
 import riverTemple from "@/assets/reference-sunset.jpg";
+import portrait from "@/assets/kamal-portrait.png.asset.json";
 
 const PortfolioScene = lazy(() => import("@/components/portfolio-scene"));
 const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369";
@@ -98,6 +99,13 @@ function Portfolio() {
     </Scene>
 
     <Scene id="about" image={waterfallHall} number="01" align="left" className="about-world">
+      <motion.figure className="portrait-card" initial={{ opacity: 0, y: 60, rotateY: -18 }} whileInView={{ opacity: 1, y: 0, rotateY: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
+        <motion.div className="portrait-float" animate={{ y: [0, -14, 0], rotate: [-1.5, 1.5, -1.5] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+          <span className="portrait-ring" aria-hidden />
+          <img src={portrait.url} alt="Kamal Solanki portrait" loading="lazy" />
+          <figcaption><Sparkles /> Kamal Solanki · IIT Madras</figcaption>
+        </motion.div>
+      </motion.figure>
       <p className="chapter-label">Who is Kamal?</p><h2>Ideas flow.<br /><em>I build.</em></h2>
       <p className="scene-copy">I’m a Foundation Level student in IIT Madras’ BS in Data Science & Applications, bridging quantitative thinking with AI and full-stack engineering to solve real-world problems.</p>
       <div className="profile-grid">
