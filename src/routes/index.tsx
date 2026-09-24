@@ -211,7 +211,7 @@ function Portfolio() {
         <div className="tech-landscape">
           <div className="horizon" />
           {skills.map((s, i) => (
-            <motion.div key={s.group} className="beacon" style={{ left: `${s.x}%`, "--h": `${s.h}%` } as React.CSSProperties} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1.2, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}>
+            <motion.div key={s.group} className="beacon" style={{ left: `${s.x}%`, "--h": `${s.h}%` } as unknown as import("motion/react").MotionStyle} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1.2, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}>
               <div className="beacon-top"><small>0{i + 1}</small><b>{s.group}</b><ul>{s.items.map((it) => <li key={it}>{it}</li>)}</ul></div>
               <i className="beacon-beam" />
               <i className="beacon-base" />
