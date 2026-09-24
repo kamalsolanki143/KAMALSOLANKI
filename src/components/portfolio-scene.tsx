@@ -21,10 +21,14 @@ function AtmosphericWorld() {
   return (
     <group ref={world}>
       <group position={[0, 0, -1.5]}>
-        {[0, 1, 2].map((ring) => (
-          <mesh ref={ring === 0 ? gate : undefined} key={ring} rotation={[Math.PI / 2, 0, ring * 0.55]} scale={1 + ring * 0.72}>
+        <mesh ref={gate} rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[1.35, 0.007, 6, 150]} />
+          <meshBasicMaterial color="#ffe3aa" transparent opacity={0.2} />
+        </mesh>
+        {[1, 2].map((ring) => (
+          <mesh key={ring} rotation={[Math.PI / 2, 0, ring * 0.55]} scale={1 + ring * 0.72}>
             <torusGeometry args={[1.35, 0.007, 6, 150]} />
-            <meshBasicMaterial color={ring === 0 ? "#ffe3aa" : "#bba0ff"} transparent opacity={0.2 - ring * 0.045} />
+            <meshBasicMaterial color="#bba0ff" transparent opacity={0.2 - ring * 0.045} />
           </mesh>
         ))}
       </group>
