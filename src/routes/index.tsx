@@ -320,7 +320,7 @@ function Portfolio() {
           </form>
         </Reveal>
         <Reveal delay={0.3} className="contact-links">
-          <button type="button" onClick={async () => { const didCopy = await copyEmail(email); setCopied(didCopy); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
+          <button type="button" onClick={async () => { setCopied(true); await copyEmail(email); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
           <a href={github} target="_blank" rel="noopener noreferrer"><Github /> GitHub</a>
           <a href={linkedIn} target="_blank" rel="noopener noreferrer"><Linkedin /> LinkedIn</a>
           <a href={iitMadras} target="_blank" rel="noopener noreferrer"><GraduationCap /> IIT Madras</a>
