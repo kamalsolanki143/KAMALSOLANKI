@@ -69,3 +69,19 @@
 @keyframes portrait-spin { to { transform: rotate(360deg); } }
 @media (max-width: 600px) { .portrait-card { float: none; width: 62%; margin: 0 auto 2rem; } }
 @media (prefers-reduced-motion: reduce) { .portrait-ring { animation: none; } }
+
+/* Hero portrait */
+.hero-with-portrait .scene-content { max-width: 52%; }
+.hero-portrait { position: absolute; right: 5%; top: 50%; translate: 0 -50%; width: min(330px, 32%); z-index: 4; perspective: 1000px; }
+.hero-portrait-inner { position: relative; border-radius: 1.75rem; padding: 6px; background: linear-gradient(160deg, oklch(0.78 0.18 330), oklch(0.55 0.22 290), oklch(0.75 0.13 220)); box-shadow: 0 40px 90px -20px oklch(0.6 0.25 320 / 0.7); }
+.hero-portrait-inner img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; border-radius: 1.4rem; }
+.hero-halo { position: absolute; inset: -40px; border-radius: 50%; background: radial-gradient(circle, oklch(0.7 0.22 320 / 0.45), transparent 65%); filter: blur(20px); z-index: -1; animation: halo-pulse 4s ease-in-out infinite; }
+.hero-chip { position: absolute; font-size: .72rem; font-weight: 600; letter-spacing: .06em; padding: .45rem .85rem; border-radius: 999px; background: oklch(0.18 0.05 290 / 0.85); color: oklch(0.95 0.02 320); border: 1px solid oklch(0.8 0.15 320 / 0.5); backdrop-filter: blur(8px); animation: chip-bob 4.5s ease-in-out infinite; white-space: nowrap; }
+.chip-a { top: 12%; left: -22%; } .chip-b { top: 48%; right: -20%; animation-delay: -1.5s; } .chip-c { bottom: 10%; left: -18%; animation-delay: -3s; }
+@keyframes halo-pulse { 50% { opacity: .55; transform: scale(1.08); } }
+@keyframes chip-bob { 50% { transform: translateY(-10px); } }
+@media (max-width: 900px) {
+  .hero-with-portrait .scene-content { max-width: 100%; }
+  .hero-portrait { position: relative; right: auto; top: auto; translate: none; width: 58%; margin: 1rem auto 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-halo, .hero-chip { animation: none; } }

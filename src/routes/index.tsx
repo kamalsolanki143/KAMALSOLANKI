@@ -54,7 +54,7 @@ const recognition = [
 const nav = ["About", "Projects", "Skills", "Journey", "Recognition", "Identity", "Contact"];
 function goTo(id: string) { document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" }); }
 
-function Scene({ id, image, number, children, align = "left", className = "" }: { id: string; image: string; number: string; children: React.ReactNode; align?: "left" | "right" | "center"; className?: string }) {
+function Scene({ id, image, number, children, aside, align = "left", className = "" }: { id: string; image: string; number: string; children: React.ReactNode; aside?: React.ReactNode; align?: "left" | "right" | "center"; className?: string }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -68,6 +68,7 @@ function Scene({ id, image, number, children, align = "left", className = "" }: 
         <div className="scene-depth-layer" /><div className="scene-shade" /><div className="mist mist-a" /><div className="mist mist-b" />
       </div>
       <motion.div className="scene-content" initial={{ opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.78, delay: 0.16 }}>{children}</motion.div>
+      {aside}
       <div className="scene-index"><span>{number}</span><i /></div>
     </motion.div>
   </section>;
@@ -92,7 +93,15 @@ function Portfolio() {
       <Button variant="ghost" size="icon" className="nav-toggle" aria-label="Toggle navigation" onClick={() => setMenuOpen((value) => !value)}>{menuOpen ? <X /> : <Menu />}</Button>
     </header>
 
-    <Scene id="home" image={mountainCity} number="00" align="center" className="opening-scene">
+    <Scene id="home" image={mountainCity} number="00" align="left" className="opening-scene hero-with-portrait" aside={
+      <motion.div className="hero-portrait" initial={{ opacity: 0, x: 80, rotateY: -25, scale: 0.9 }} animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }} transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
+        <motion.div className="hero-portrait-inner" animate={{ y: [0, -16, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+          <span className="hero-halo" aria-hidden /><span className="portrait-ring" aria-hidden />
+          <img src={portrait.url} alt="Kamal Solanki" />
+          <span className="hero-chip chip-a">AI · ML</span><span className="hero-chip chip-b">IIT Madras</span><span className="hero-chip chip-c">Full-Stack</span>
+        </motion.div>
+      </motion.div>
+    }>
       <p className="chapter-label">IIT Madras · AI · Data science · Full-stack</p><h1>KAMAL<br /><span>SOLANKI</span></h1>
       <p className="opening-copy">BS Data Science student crafting intelligent systems,<br />immersive products and open-source experiments.</p>
       <div className="hero-actions"><Button className="discover-button" onClick={() => goTo("about")}>Enter the world <ArrowDown /></Button><Button variant="outline" className="discover-button" onClick={() => goTo("projects")}>Explore work</Button></div>
