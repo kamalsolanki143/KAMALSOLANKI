@@ -108,7 +108,7 @@ function WorldScene({ id, bg, children, className = "", bridge, clouds = true, r
   return (
     <section ref={ref} id={id} className={`world-scene ${className}`} style={tint ? ({ "--scene-tint": tint } as React.CSSProperties) : undefined}>
       <div className="layer-stack" aria-hidden>
-        <motion.img className="layer-bg" src={bg} alt="" style={{ y: bgY, scale: bgScale }} loading={id === "home" ? "eager" : "lazy"} decoding="async" />
+        <motion.img className="layer-bg" src={bg} alt="" style={{ y: bgY, scale: bgScale }} loading={id === "home" ? "eager" : "lazy"} fetchPriority={id === "home" ? "high" : "low"} decoding="async" />
         <div className="layer-sky-tint" />
         {clouds && <motion.div className="layer-clouds" style={{ y: cloudY }}><img src={cloudLayer} alt="" loading="lazy" /><img src={cloudLayer} alt="" loading="lazy" /></motion.div>}
         {bridge && <motion.div className="layer-mid" style={{ y: midY, scale: midScale }}><img src={bridgeLayer} alt="" loading="lazy" /><i className="falls falls-a" /><i className="falls falls-b" /></motion.div>}
@@ -258,8 +258,8 @@ function Portfolio() {
               <ul>{current.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
               <div className="feature-tech">{current.tech.join(" · ")}</div>
               <div className="feature-actions">
-                <a className="cta primary" href={current.repo} target="_blank" rel="noopener noreferrer"><Github /> Repository</a>
-                {current.demo && <a className="cta" href={current.demo} target="_blank" rel="noopener noreferrer">Live demo <ArrowUpRight /></a>}
+                <a className="cta primary" href={current.repo} target="_blank" rel="noopener noreferrer" aria-label={`View ${current.title} repository on GitHub`}><Github /> View repository</a>
+                {current.demo && <a className="cta" href={current.demo} target="_blank" rel="noopener noreferrer" aria-label={`Open ${current.title} live demo`}>Live demo <ArrowUpRight /></a>}
               </div>
             </motion.article>
           </AnimatePresence>
@@ -301,11 +301,11 @@ function Portfolio() {
         <Heading n="07" label="Linked digital profiles" title="Identity," em="connected." />
         <div className="passports">
           {[
-            { href: iitMadras, icon: GraduationCap, issuer: "IIT Madras", name: "BS in Data Science & Applications", line: "Active student", label: "Official programme" },
-            { href: github, icon: Github, issuer: "GitHub", name: "@kamalsolanki143", line: "Python · AI · Open Source", label: "Linked profile" },
-            { href: linkedIn, icon: Linkedin, issuer: "LinkedIn", name: "Kamal Solanki", line: "Founder · Ambassador · Community Builder", label: "Linked profile" },
+            { href: iitMadras, icon: GraduationCap, issuer: "IIT Madras", name: "BS in Data Science & Applications", line: "Active student", label: "Official programme", aria: "Open the official IIT Madras Data Science programme" },
+            { href: github, icon: Github, issuer: "GitHub", name: "@kamalsolanki143", line: "Python · AI · Open Source", label: "Linked profile", aria: "Open Kamal Solanki GitHub profile" },
+            { href: linkedIn, icon: Linkedin, issuer: "LinkedIn", name: "Kamal Solanki", line: "Founder · Ambassador · Community Builder", label: "Linked profile", aria: "Open Kamal Solanki LinkedIn profile" },
           ].map(({ icon: Icon, ...x }, i) => (
-            <motion.a key={x.issuer} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${x.issuer} profile`} className="passport" initial={{ opacity: 0, y: 50, rotate: (i - 1) * 5 }} whileInView={{ opacity: 1, y: 0, rotate: (i - 1) * 3 }} whileHover={{ y: -10, rotate: 0, scale: 1.015 }} whileTap={{ scale: 0.985 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.9, delay: i * 0.12 }}>
+            <motion.a key={x.issuer} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={x.aria} className="passport" initial={{ opacity: 0, y: 50, rotate: (i - 1) * 5 }} whileInView={{ opacity: 1, y: 0, rotate: (i - 1) * 3 }} whileHover={{ y: -10, rotate: 0, scale: 1.015 }} whileTap={{ scale: 0.985 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.9, delay: i * 0.12 }}>
               <span className="pp-issuer"><Icon /> {x.issuer}</span>
               <b>{x.name}</b><em>{x.line}</em>
               <span className="pp-stamp"><ShieldCheck /> {x.label}</span>
