@@ -256,3 +256,7 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+@media (min-width: 1025px) { .world-scene { padding-left: clamp(110px, 9vw, 150px); } }
+.scroll-cue { bottom: 3vh; }
+.layer-clouds { opacity: .42; }
+@media (max-width: 860px) { .hero-portrait { width: min(180px, 48vw); } .hero-portrait figcaption { display: none; } .scene-hero { padding-top: 88px; } }
