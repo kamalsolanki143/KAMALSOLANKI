@@ -60,6 +60,11 @@ New identity chapter add karna with:
 
 ## Cinematic integration
 - Current purple/violet fantasy environments, 3D particles, pointer depth and parallax remain authoritative.
+- Existing flat image-led presentation ko full spatial 3D journey mein upgrade karna: layered environment planes, architectural portals, floating structures, foreground silhouettes and volumetric depth.
+- Video reference jaise scroll-controlled camera travel add karna, jahan camera mountain-city entrance, waterfall hall, industrial gallery, river-temple aur final skyline scene ke through move kare.
+- Animated waterfalls and flowing water surfaces, drifting mist/fog, light rays, reflections, particles, rotating machinery/rings and environment lights add karna.
+- Mouse/touch movement par camera and foreground elements ki responsive parallax hogi; section transitions simple fades nahi balki forward travel and depth reveals hongi.
+- Projects, skills, credentials and recognition environmental holograms/signage ki tarah scenery mein integrated honge, plain webpage panels ki tarah nahi.
 - Content ko dense white cards mein convert nahi karna; each content group translucent cinematic overlays, expandable project rows and staged reveals mein appear hoga.
 - Projects ko filterable categories dena: All, Hackathon, Personal Project and Academic.
 - Longer sections ko comfortable scroll-height dena so text overlap na ho aur environments visible rahein.
@@ -67,9 +72,17 @@ New identity chapter add karna with:
 
 ## Interaction and responsive behavior
 - Project filters, expandable details, external profile/repository links and contact actions fully functional honge.
-- Entrance sequences, hover depth, subtle lighting and scroll progression remain smooth.
+- Entrance sequences, hover depth, dynamic lighting and scroll-linked camera progression smooth rahenge.
 - Mobile par content readable stacked scenes mein reframe hoga, same 3D/cinematic identity ke saath.
+- Mobile par lighter geometry and particle counts use honge, lekin 3D movement aur environment journey remove nahi hogi.
 - Reduced-motion users ko still environments and restrained fades milenge.
+
+## Technical 3D implementation
+- React Three Fiber scene ko multi-zone world mein rebuild karna instead of the current small floating-shape overlay.
+- Generated cinematic images ko background-only use karne ke bajay textured depth layers and 3D geometry ke saath compose karna.
+- Custom shader-compatible water surface, fog, bloom-like emissive materials and animated light sources use karna without unsupported server packages.
+- Scroll progress ko camera position, scene visibility, lighting and environmental motion se synchronize karna.
+- Canvas loading fallback, adaptive device pixel ratio and reduced geometry ensure karna so desktop aur mobile dono par smooth chale.
 
 ## Verification
 - Desktop and mobile par every chapter, all ten projects, filters, links, navigation and contact form verify karna.
