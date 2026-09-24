@@ -1,6 +1,6 @@
 import { ClientOnly, createFileRoute } from "@tanstack/react-router";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { lazy, Suspense, useRef, useState } from "react";
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { Children, lazy, Suspense, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Award, BookOpen, Check, ChevronDown, Code2, Copy, Github, GraduationCap, Linkedin, Mail, MapPin, Menu, Rocket, Send, ShieldCheck, Sparkles, Users, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import mountainCity from "@/assets/reference-city.jpg";
@@ -54,24 +54,49 @@ const recognition = [
 const nav = ["About", "Projects", "Skills", "Journey", "Recognition", "Identity", "Contact"];
 function goTo(id: string) { document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" }); }
 
+const fireflies = Array.from({ length: 14 }, (_, i) => ({ left: `${(i * 37) % 100}%`, top: `${20 + ((i * 53) % 70)}%`, delay: `${-(i * 0.9)}s`, dur: `${7 + (i % 5)}s` }));
+
 function Scene({ id, image, number, children, aside, align = "left", className = "" }: { id: string; image: string; number: string; children: React.ReactNode; aside?: React.ReactNode; align?: "left" | "right" | "center"; className?: string }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], reduced ? [1, 1, 1] : [1.16, 1, 1.12]);
-  const y = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["-5%", "5%"]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], reduced ? [1, 1, 1] : [1.18, 1.02, 1.14]);
+  const y = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["-6%", "6%"]);
+  const blur = useTransform(scrollYProgress, [0, 0.22, 0.8, 1], reduced ? ["blur(0px)", "blur(0px)", "blur(0px)", "blur(0px)"] : ["blur(8px)", "blur(0px)", "blur(0px)", "blur(6px)"]);
+  const px = useMotionValue(0), py = useMotionValue(0);
+  const sx = useSpring(px, { stiffness: 60, damping: 18 }), sy = useSpring(py, { stiffness: 60, damping: 18 });
+  const farX = useTransform(sx, (v) => v * -14), farY = useTransform(sy, (v) => v * -10);
+  const nearX = useTransform(sx, (v) => v * 28), nearY = useTransform(sy, (v) => v * 16);
+  const tiltY = useTransform(sx, (v) => v * 2.2), tiltX = useTransform(sy, (v) => v * -1.6);
+  const onMove = (e: React.PointerEvent) => { if (reduced || e.pointerType !== "mouse") return; const r = e.currentTarget.getBoundingClientRect(); px.set((e.clientX - r.left) / r.width - 0.5); py.set((e.clientY - r.top) / r.height - 0.5); };
   return <section ref={ref} id={id} className={`cinematic-scene scene-${align} ${className}`}>
-    <motion.div className="presentation-frame" initial={{ opacity: 0, scale: 0.92, rotateX: 3 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0 }} viewport={{ amount: 0.16 }} transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}>
+    <motion.div className="presentation-frame" onPointerMove={onMove} onPointerLeave={() => { px.set(0); py.set(0); }} style={{ rotateX: tiltX, rotateY: tiltY, filter: blur }} initial={{ opacity: 0, scale: 0.9, rotateX: 6 }} whileInView={{ opacity: 1, scale: 1, rotateX: 0 }} viewport={{ amount: 0.14 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>
       <div className="frame-topline"><span className="frame-mark">▲</span><span>{number} / 07</span></div>
       <div className="scene-visual">
-        <motion.img src={image} alt="" width={1536} height={1024} loading={id === "home" ? "eager" : "lazy"} className="scene-image" style={{ scale, y }} />
+        <motion.div className="scene-layer" style={{ x: farX, y: farY }}>
+          <motion.img src={image} alt="" width={1536} height={1024} loading={id === "home" ? "eager" : "lazy"} className="scene-image kenburns" style={{ scale, y }} />
+        </motion.div>
+        <div className="light-rays" /><div className="water-shimmer" />
+        <motion.div className="scene-layer near-layer" style={{ x: nearX, y: nearY }}>
+          <img src={image} alt="" className="scene-image near-image" loading="lazy" />
+        </motion.div>
         <div className="scene-depth-layer" /><div className="scene-shade" /><div className="mist mist-a" /><div className="mist mist-b" />
+        <div className="fireflies" aria-hidden>{fireflies.map((f, i) => <i key={i} style={{ left: f.left, top: f.top, animationDelay: f.delay, animationDuration: f.dur }} />)}</div>
+        <div className="film-grain" />
       </div>
-      <motion.div className="scene-content" initial={{ opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.78, delay: 0.16 }}>{children}</motion.div>
+      <motion.div className="scene-content" initial="hidden" whileInView="show" viewport={{ amount: 0.15, once: true }} variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } } }}>
+        {Children.map(children, (child) => <motion.div className="stagger-item" variants={{ hidden: { opacity: 0, y: 28, filter: "blur(6px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } }}>{child}</motion.div>)}
+      </motion.div>
       {aside}
       <div className="scene-index"><span>{number}</span><i /></div>
     </motion.div>
   </section>;
+}
+
+function GlowTitle() {
+  const reduced = useReducedMotion();
+  const word = (text: string, offset: number, cls?: string) => <span className={cls}>{text.split("").map((c, i) => <motion.span key={i} className="glow-letter" initial={reduced ? false : { opacity: 0, y: 40, rotateX: -90 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ delay: 0.35 + (offset + i) * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>{c}</motion.span>)}</span>;
+  return <h1 className="glow-title" aria-label="Kamal Solanki"><span className="title-bloom" aria-hidden />{word("KAMAL", 0)}<br />{word("SOLANKI", 5, "outline-word")}</h1>;
 }
 
 function Portfolio() {
@@ -102,9 +127,11 @@ function Portfolio() {
         </motion.div>
       </motion.div>
     }>
-      <p className="chapter-label">IIT Madras · AI · Data science · Full-stack</p><h1>KAMAL<br /><span>SOLANKI</span></h1>
+      <p className="chapter-label">IIT Madras · AI · Data science · Full-stack</p>
+      <GlowTitle />
       <p className="opening-copy">BS Data Science student crafting intelligent systems,<br />immersive products and open-source experiments.</p>
       <div className="hero-actions"><Button className="discover-button" onClick={() => goTo("about")}>Enter the world <ArrowDown /></Button><Button variant="outline" className="discover-button" onClick={() => goTo("projects")}>Explore work</Button></div>
+      <button type="button" className="scroll-cue" onClick={() => goTo("about")} aria-label="Scroll to about"><span /><em>Scroll</em></button>
     </Scene>
 
     <Scene id="about" image={waterfallHall} number="01" align="left" className="about-world">
