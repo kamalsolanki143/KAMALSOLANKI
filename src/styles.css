@@ -158,6 +158,7 @@
 .archive-feature ul { margin: 0 0 20px; padding-left: 18px; color: var(--ink); line-height: 1.9; }
 .archive-feature li::marker { color: var(--sunset); }
 .feature-tech { margin-bottom: 26px; font-size: 13px; letter-spacing: .08em; color: var(--cyan); }
+.feature-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ----- achievements ----- */
 .finalist { display: flex; align-items: center; gap: 24px; margin-bottom: 60px; }
@@ -188,7 +189,8 @@
 /* ----- identity ----- */
 .passports { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(18px, 3vw, 40px); padding-top: 10px; }
 .passport { position: relative; width: min(300px, 100%); aspect-ratio: 3 / 4; padding: 28px 24px; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; border-radius: 10px; color: var(--ink);
-  background: linear-gradient(165deg, oklch(.3 .1 310), oklch(.16 .07 290)); box-shadow: 0 50px 80px -30px oklch(.03 .03 290), inset 0 0 0 1px oklch(.85 .1 55 / .25), inset 0 0 0 8px oklch(.2 .07 295), inset 0 0 0 9px oklch(.85 .1 55 / .3); }
+  background: linear-gradient(165deg, oklch(.3 .1 310), oklch(.16 .07 290)); box-shadow: 0 50px 80px -30px oklch(.03 .03 290), inset 0 0 0 1px oklch(.85 .1 55 / .25), inset 0 0 0 8px oklch(.2 .07 295), inset 0 0 0 9px oklch(.85 .1 55 / .3); cursor: pointer; transition: box-shadow .35s ease, filter .35s ease; }
+.passport:hover, .passport:focus-visible { box-shadow: 0 58px 92px -30px oklch(.03 .03 290), 0 0 30px oklch(.85 .1 55 / .16), inset 0 0 0 1px oklch(.85 .1 55 / .38), inset 0 0 0 8px oklch(.2 .07 295), inset 0 0 0 9px oklch(.85 .1 55 / .42); filter: brightness(1.06); outline: none; }
 .pp-issuer { position: absolute; top: 28px; left: 24px; display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--sunset); }
 .pp-issuer svg { width: 18px; height: 18px; }
 .passport b { font: 500 30px/1 var(--serif); overflow-wrap: anywhere; }
