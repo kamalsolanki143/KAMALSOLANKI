@@ -153,12 +153,20 @@ function Portfolio() {
           <h2>LET’S BUILD<br /><em>SOMETHING REAL.</em></h2>
           <div className="contact-grid">
             <div><p>Have an idea, opportunity, or technical rabbit hole worth exploring? I’d love to hear about it.</p><div className="social-row"><a href="mailto:solankikamal55143@gmail.com" aria-label="Email"><Mail /></a><a href="https://github.com/kamalsolanki143" target="_blank" rel="noreferrer" aria-label="GitHub"><Github /></a><a href="https://www.linkedin.com/in/kamal-solanki" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin /></a></div></div>
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const data = new FormData(e.currentTarget);
+              const name = String(data.get("name") ?? "");
+              const email = String(data.get("email") ?? "");
+              const message = String(data.get("message") ?? "");
+              setSent(true);
+              window.location.href = `mailto:solankikamal55143@gmail.com?subject=${encodeURIComponent(`Portfolio enquiry from ${name}`)}&body=${encodeURIComponent(`${message}\n\nFrom: ${name} (${email})`)}`;
+            }}>
               <label>Name<input required name="name" placeholder="Your name" /></label>
               <label>Email<input required type="email" name="email" placeholder="you@example.com" /></label>
               <label>Message<textarea required name="message" placeholder="Tell me about your idea..." rows={4} /></label>
               <Button type="submit" size="lg">{sent ? "Message ready" : "Send message"} <Send /></Button>
-              {sent && <p className="form-note">Thanks — email Kamal directly at solankikamal55143@gmail.com to continue.</p>}
+              {sent && <p className="form-note">Your email app is ready with the message filled in.</p>}
             </form>
           </div>
         </div>
