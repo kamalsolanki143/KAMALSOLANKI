@@ -20,7 +20,7 @@
 - [x] Correct identity, project, contact, and navigation links/interactions
 - [x] Click-test desktop and mobile flows, then complete the final content audit
 
-- [ ] Remove all inaccurate full-stack positioning
-- [ ] Polish intentional layouts from 320px through 1920px
-- [ ] Audit keyboard, touch, reduced-motion, contact, and every real link
-- [ ] Optimize cinematic scene images without changing the artwork
+- [x] Remove all inaccurate full-stack positioning
+- [x] Polish intentional layouts from 320px through 1920px
+- [x] Audit keyboard, touch, reduced-motion, contact, and every real link
+- [x] Optimize cinematic scene images without changing the artwork

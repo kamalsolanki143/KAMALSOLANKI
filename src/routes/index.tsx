@@ -176,7 +176,7 @@ function Portfolio() {
       <header className="world-nav">
         <button type="button" className="wordmark" onClick={() => goTo("home")}>K · Solanki</button>
         <nav id="chapter-menu" className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Chapters">
-          {chapters.slice(1).map(([id, label]) => <button type="button" key={id} className={active === id ? "on" : ""} onClick={() => { goTo(id); setMenuOpen(false); }}>{label}</button>)}
+          {chapters.slice(1).map(([id, label]) => <button type="button" key={id} className={active === id ? "on" : ""} aria-current={active === id ? "location" : undefined} onClick={() => { goTo(id); setMenuOpen(false); }}>{label}</button>)}
         </nav>
         <button type="button" className="nav-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="chapter-menu" onClick={() => setMenuOpen((v) => !v)}>{menuOpen ? <X /> : <Menu />}</button>
       </header>
@@ -327,7 +327,7 @@ function Portfolio() {
           </form>
         </Reveal>
         <Reveal delay={0.3} className="contact-links">
-          <button type="button" aria-label="Copy Kamal Solanki's email address" onClick={async () => { setCopied(true); await copyEmail(email); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
+          <button type="button" aria-label="Copy Kamal Solanki's email address" aria-live="polite" onClick={async () => { setCopied(true); await copyEmail(email); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
           <a href={github} target="_blank" rel="noopener noreferrer" aria-label="Open Kamal Solanki GitHub profile"><Github /> GitHub</a>
           <a href={linkedIn} target="_blank" rel="noopener noreferrer" aria-label="Open Kamal Solanki LinkedIn profile"><Linkedin /> LinkedIn</a>
           <a href={iitMadras} target="_blank" rel="noopener noreferrer" aria-label="Open the official IIT Madras Data Science programme"><GraduationCap /> IIT Madras</a>

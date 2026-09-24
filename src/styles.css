@@ -50,7 +50,7 @@
 .chapter-rail em { font-style: normal; font-size: 11px; opacity: .6; }
 
 /* ----- scene + layers ----- */
-.world-scene { position: relative; min-height: 118svh; padding: clamp(110px, 14vh, 160px) clamp(20px, 7vw, 120px) clamp(120px, 18vh, 200px); isolation: isolate; overflow: hidden; margin-top: -14svh; }
+.world-scene { position: relative; min-height: 118svh; padding: clamp(110px, 14vh, 160px) clamp(20px, 7vw, 120px) clamp(120px, 18vh, 200px); scroll-margin-top: 72px; isolation: isolate; overflow: hidden; margin-top: -14svh; }
 .world-scene:first-of-type { margin-top: 0; }
 .layer-stack { position: absolute; inset: 0; z-index: -1; overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 83%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 83%, transparent 100%); }
