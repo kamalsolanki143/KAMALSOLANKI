@@ -8,7 +8,7 @@ const palette = ["#f8a5d0", "#8fdcff", "#c9a2ff", "#ffc98a", "#f8a5d0"].map((c) 
 
 function Orbs({ count }: { count: number }) {
   const refs = useRef<(Mesh | null)[]>([]);
-  const seeds = useMemo(() => Array.from({ length: count }, (_, i) => ({ x: ((i * 7.3) % 14) - 7, y: ((i * 3.7) % 8) - 4, z: -((i * 2.1) % 6), s: 0.05 + (i % 4) * 0.035, p: i * 1.3 })), [count]);
+  const seeds = useMemo(() => Array.from({ length: count }, (_, i) => ({ x: ((i * 7.3) % 14) - 7, y: ((i * 3.7) % 8) - 4, z: -((i * 2.1) % 6), s: 0.015 + (i % 4) * 0.01, p: i * 1.3 })), [count]);
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     refs.current.forEach((m, i) => { const s = seeds[i]; if (!m || !s) return; m.position.set(s.x + Math.sin(t * 0.3 + s.p) * 0.6, s.y + Math.sin(t * 0.5 + s.p) * 0.5, s.z); });
