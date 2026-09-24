@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
+import { AnimatePresence, motion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, Check, Copy, Github, GraduationCap, Linkedin, Mail, Menu, Send, ShieldCheck, X } from "lucide-react";
 import cityImg from "@/assets/reference-city.jpg";
@@ -17,6 +17,7 @@ import portrait from "@/assets/kamal-portrait-sharp.jpg.asset.json";
 const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369";
 const github = "https://github.com/kamalsolanki143";
 const email = "solankikamal55143@gmail.com";
+const iitMadras = "https://study.iitm.ac.in/ds/";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,32 +33,32 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-type Project = { title: string; category: "Hackathon" | "Personal Project" | "Academic"; status: string; summary: string; bullets: string[]; tech: string[]; repo: string };
+type Project = { title: string; category: "Hackathon" | "Personal Project" | "Academic"; status: string; summary: string; bullets: string[]; tech: string[]; repo: string; demo?: string };
 const projects: Project[] = [
-  { title: "TalentOS-AI-BuildX26", category: "Hackathon", status: "Finalist · BuildX'26", summary: "AI-powered talent assessment and recruitment workspace built for BuildX26.", bullets: ["Automated technical evaluation", "FastAPI service endpoints", "Candidate scoring dashboard"], tech: ["Python", "FastAPI", "Next.js", "React"], repo: `${github}/TalentOS-AI-BuildX26` },
-  { title: "Compasscrew-v2v", category: "Hackathon", status: "Finalist", summary: "Collaborative navigation and vehicle-to-vehicle spatial coordination system.", bullets: ["Spatial coordinate tracking", "Vehicle fleet dashboard", "Responsive interactive UI"], tech: ["Python", "React", "Next.js"], repo: `${github}/Compasscrew-v2v` },
-  { title: "sentinel-ai-datathon-2026", category: "Hackathon", status: "Prototype", summary: "Threat detection and anomaly analytics prototype developed for Datathon 2026.", bullets: ["Datathon log sample ingestion", "Machine-learning anomaly classifier", "Telemetry risk dashboard"], tech: ["Python", "Machine Learning", "FastAPI"], repo: `${github}/sentinel-ai-datathon-2026` },
-  { title: "VitalFlow-AI", category: "Hackathon", status: "Prototype", summary: "Predictive health indicator analytics portal evaluating physiological metrics and risk factors.", bullets: ["Multi-variable health intake", "Python model pipeline", "Probability risk breakdown"], tech: ["Python", "Data Science", "Machine Learning"], repo: `${github}/VitalFlow-AI` },
-  { title: "PranaMap-AI", category: "Hackathon", status: "In Development", summary: "Environmental and air-quality intelligence mapping system powered by AI models.", bullets: ["Air-quality AQI visualization", "Predictive environmental pipeline", "Geospatial map interface"], tech: ["Python", "AI", "React"], repo: `${github}/PranaMap-AI` },
-  { title: "Quoteflow-AI", category: "Hackathon", status: "In Development", summary: "Intelligent quotation automation and document workflow platform.", bullets: ["Automated pricing estimation", "PDF document generation", "Clean workflow dashboard"], tech: ["Python", "FastAPI", "Next.js"], repo: `${github}/Quoteflow-AI` },
-  { title: "RoadRakshak-AI", category: "Hackathon", status: "Prototype", summary: "AI-assisted road safety analytics system predicting hazard risk levels.", bullets: ["Hazard risk prediction", "Road anomaly telemetry", "Real-time safety alerts"], tech: ["Python", "AI", "Machine Learning"], repo: `${github}/RoadRakshak-AI` },
-  { title: "redrob-ai-ranking-engine", category: "Hackathon", status: "Completed", summary: "AI-driven candidate ranking engine prioritizing technical skill profiles.", bullets: ["Quantitative match scoring", "Skill matrix extraction", "Transparent ranking output"], tech: ["Python", "AI", "Data Science"], repo: `${github}/redrob-ai-ranking-engine` },
-  { title: "rule-based-ai-chatbot", category: "Personal Project", status: "Completed", summary: "Rule-based artificial intelligence chatbot processing structured queries.", bullets: ["Intent pattern matching", "Deterministic rule lookup", "Fast response generation"], tech: ["Python", "AI", "NLP"], repo: `${github}/rule-based-ai-chatbot` },
-  { title: "iris-classification-ai", category: "Academic", status: "Completed", summary: "Supervised machine-learning benchmark predicting iris flower species.", bullets: ["Multi-class classification", "Confusion matrix generation", "Model accuracy evaluation"], tech: ["Python", "Scikit-learn", "Pandas"], repo: `${github}/iris-classification-ai` },
+  { title: "TalentOS-AI-BuildX26", category: "Hackathon", status: "Finalist · BuildX'26", summary: "AI-powered hiring and recruitment platform built for BuildX’26.", bullets: ["Resume screening", "Candidate-job fit analysis", "Interview insights and hiring workflows"], tech: ["TypeScript", "AI", "Recruitment workflows"], repo: `${github}/TalentOS-AI-BuildX26`, demo: "https://talent-os-ai-build-x26.vercel.app" },
+  { title: "Compasscrew-v2v", category: "Hackathon", status: "Finalist", summary: "EscapeHer is an AI-powered women’s safety platform built for Vibe2Vision (SheAspire 3.0).", bullets: ["SOS activation and emergency alerts", "Live location and safe-route navigation", "AI-assisted emergency response"], tech: ["TypeScript", "AI", "Location services"], repo: `${github}/Compasscrew-v2v` },
+  { title: "sentinel-ai-datathon-2026", category: "Hackathon", status: "Repository", summary: "AI-powered crime intelligence operating system for proactive policing.", bullets: ["Crime intelligence workflows", "AI-assisted analysis", "Proactive policing use case"], tech: ["Python", "AI", "Data Analysis"], repo: `${github}/sentinel-ai-datathon-2026`, demo: "https://sentinel-ai-datathon-2026.vercel.app" },
+  { title: "VitalFlow-AI", category: "Hackathon", status: "Repository", summary: "Multi-agent healthcare coordination platform for diagnostic reports, risk assessment and follow-up workflows.", bullets: ["Diagnostic report analysis", "Risk-based case routing", "Escalation and follow-up tracking"], tech: ["TypeScript", "AI", "Healthcare workflows"], repo: `${github}/VitalFlow-AI`, demo: "https://vital-flow-ai-azure.vercel.app" },
+  { title: "PranaMap-AI", category: "Hackathon", status: "Repository", summary: "AI-powered urban air-quality intervention platform for smart cities.", bullets: ["Urban air-quality insights", "GIS-based workflows", "Machine-learning support"], tech: ["Python", "LangGraph", "FastAPI", "Next.js", "GIS", "Machine Learning"], repo: `${github}/PranaMap-AI`, demo: "https://prana-map-ai.vercel.app" },
+  { title: "Quoteflow-AI", category: "Hackathon", status: "Repository", summary: "AI-powered RFQ-to-quote agent for PDFs, emails and business requests.", bullets: ["RFQ intake", "Quotation generation", "AI-assisted business workflows"], tech: ["JavaScript", "AI", "Document workflows"], repo: `${github}/Quoteflow-AI`, demo: "https://quoteflow-ai-eight.vercel.app" },
+  { title: "RoadRakshak-AI", category: "Hackathon", status: "Repository", summary: "AI-powered RoadSoS assistant built for the IIT Madras Road Safety Hackathon 2026.", bullets: ["Nearby emergency-service discovery", "SOS alerts", "Chatbot-based emergency guidance"], tech: ["JavaScript", "AI", "Road safety"], repo: `${github}/RoadRakshak-AI`, demo: "https://road-rakshak-ai.vercel.app" },
+  { title: "redrob-ai-ranking-engine", category: "Hackathon", status: "Repository", summary: "AI-powered candidate ranking engine using semantic search and skill intelligence.", bullets: ["Semantic search", "Skill and career-progression analysis", "Candidate ranking workflow"], tech: ["Python", "AI", "Semantic Search"], repo: `${github}/redrob-ai-ranking-engine` },
+  { title: "rule-based-ai-chatbot", category: "Personal Project", status: "Repository", summary: "Bilingual rule-based chatbot supporting English, Hinglish and Hindi inputs.", bullets: ["Language-specific responses", "Control-flow and decision logic", "Predefined conversational rules"], tech: ["Python", "AI", "Natural Language Processing"], repo: `${github}/rule-based-ai-chatbot` },
+  { title: "iris-classification-ai", category: "Academic", status: "Repository", summary: "Machine-learning classification project using the Iris dataset and K-Nearest Neighbors.", bullets: ["Iris species prediction", "K-Nearest Neighbors", "Model performance evaluation"], tech: ["Python", "Machine Learning", "KNN"], repo: `${github}/iris-classification-ai` },
 ];
 
 const achievements = [
   { year: "2026", title: "Google Student Ambassador", text: "Supporting student engagement and AI learning through the Gemini program." },
   { year: "2026", title: "Campus Ambassador — E-Cell IIT Bombay", text: "Promoting entrepreneurship, innovation and startup initiatives." },
-  { year: "2026", title: "GirlScript Summer of Code", text: "Open-source contributor through pull requests during GSSoC 2026." },
+  { year: "2026", title: "GirlsScript Summer of Code Contributor", text: "Contributing to open-source projects through the programme." },
   { year: "2026 →", title: "Founder — Compass Crew", text: "Leading a student community for AI, hackathons, startups and developer growth." },
   { year: "2026", title: "Global Campus Ambassador — Swytchcode", text: "Driving developer engagement and community initiatives." },
 ];
 
 const skills = [
   { group: "Programming", items: ["Python"], x: 8, h: 46 },
-  { group: "AI & Data", items: ["Artificial Intelligence", "Data Science", "Machine Learning", "Statistics", "Pandas", "Scikit-learn", "NLP", "LLMs"], x: 32, h: 78 },
-  { group: "Development", items: ["FastAPI", "Next.js", "React", "TypeScript", "Tailwind CSS"], x: 58, h: 62 },
+  { group: "AI & Data", items: ["Artificial Intelligence", "Machine Learning", "Data Science", "Data Analysis", "Pandas", "Scikit-learn", "NLP", "LLMs"], x: 32, h: 78 },
+  { group: "Development", items: ["FastAPI", "Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"], x: 58, h: 62 },
   { group: "Tools", items: ["Git", "GitHub", "VS Code", "Vercel", "Jupyter"], x: 82, h: 50 },
 ];
 
@@ -67,6 +68,23 @@ const chapters = [
 ] as const;
 
 function goTo(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); }
+
+async function copyEmail(emailAddress: string) {
+  try {
+    await navigator.clipboard.writeText(emailAddress);
+    return true;
+  } catch {
+    const input = document.createElement("textarea");
+    input.value = emailAddress;
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+    document.body.appendChild(input);
+    input.select();
+    const copied = document.execCommand("copy");
+    input.remove();
+    return copied;
+  }
+}
 
 const motes = Array.from({ length: 16 }, (_, i) => ({ left: `${(i * 41 + 7) % 100}%`, top: `${(i * 57 + 11) % 90}%`, delay: `${-(i * 1.3)}s`, dur: `${9 + (i % 6)}s`, size: 2 + (i % 3) }));
 
@@ -78,17 +96,15 @@ type SceneProps = {
 /** One chapter of the world: background → clouds → midground → content → foreground, each moving at its own speed. */
 function WorldScene({ id, bg, children, className = "", bridge, clouds = true, rocks = "both", tint }: SceneProps) {
   const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
   const { scrollYProgress: raw } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const p = useSpring(raw, { stiffness: 90, damping: 24, mass: 0.4 });
-  const r = (a: string | number, b: string | number) => (reduced ? [a, a] : [a, b]);
-  const bgY = useTransform(p, [0, 1], r("-8%", "8%") as string[]);
-  const bgScale = useTransform(p, [0, 0.5, 1], reduced ? [1.05, 1.05, 1.05] : [1.22, 1.08, 1.0]);
-  const cloudY = useTransform(p, [0, 1], r("-18%", "22%") as string[]);
-  const midY = useTransform(p, [0, 1], r("30%", "-26%") as string[]);
-  const midScale = useTransform(p, [0, 1], reduced ? [1, 1] : [0.92, 1.12]);
-  const fgY = useTransform(p, [0, 1], r("45%", "-55%") as string[]);
-  const fgScale = useTransform(p, [0, 1], reduced ? [1, 1] : [1, 1.35]);
+  const bgY = useTransform(p, [0, 1], ["-8%", "8%"]);
+  const bgScale = useTransform(p, [0, 0.5, 1], [1.22, 1.08, 1.0]);
+  const cloudY = useTransform(p, [0, 1], ["-18%", "22%"]);
+  const midY = useTransform(p, [0, 1], ["30%", "-26%"]);
+  const midScale = useTransform(p, [0, 1], [0.92, 1.12]);
+  const fgY = useTransform(p, [0, 1], ["45%", "-55%"]);
+  const fgScale = useTransform(p, [0, 1], [1, 1.35]);
   return (
     <section ref={ref} id={id} className={`world-scene ${className}`} style={tint ? ({ "--scene-tint": tint } as React.CSSProperties) : undefined}>
       <div className="layer-stack" aria-hidden>
@@ -119,8 +135,7 @@ function Heading({ n, label, title, em }: { n: string; label: string; title: str
 }
 
 function HeroTitle() {
-  const reduced = useReducedMotion();
-  const word = (text: string, offset: number) => text.split("").map((c, i) => <motion.span key={i} initial={reduced ? false : { opacity: 0, y: "0.6em" }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + (offset + i) * 0.05, duration: 1, ease: [0.22, 1, 0.36, 1] }}>{c}</motion.span>);
+  const word = (text: string, offset: number) => text.split("").map((c, i) => <motion.span key={i} initial={{ opacity: 0, y: "0.6em" }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + (offset + i) * 0.05, duration: 1, ease: [0.22, 1, 0.36, 1] }}>{c}</motion.span>);
   return <h1 className="hero-title" aria-label="Kamal Solanki"><span className="line">{word("KAMAL", 0)}</span><span className="line thin">{word("SOLANKI", 5)}</span></h1>;
 }
 
@@ -197,7 +212,7 @@ function Portfolio() {
             <Heading n="02" label="Who I am" title="Bridging software" em="& quantitative data science." />
             <Reveal delay={0.1}><p className="lede">I’m Kamal — a Foundation Level student in IIT Madras’ BS in Data Science & Applications, combining statistics and mathematics with AI and full-stack engineering to build things that solve real problems.</p></Reveal>
             <Reveal delay={0.2} className="inscriptions">
-              <div><small>Studying</small><p>Statistics 1 · Mathematics 1 · Computational Thinking · English 1</p></div>
+              <div><small>Studying</small><p>Foundation Level · Data Science · Mathematics · Computational Thinking · English</p></div>
               <div><small>Mission</small><p>Accessible, reliable, data-driven software through hands-on building.</p></div>
               <div><small>Profile</small><p>IIT Madras Student · AI & Data Science Learner · Full-Stack Project Builder · Hackathon & Open-Source Enthusiast</p></div>
             </Reveal>
@@ -235,7 +250,10 @@ function Portfolio() {
               <p>{current.summary}</p>
               <ul>{current.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
               <div className="feature-tech">{current.tech.join(" · ")}</div>
-              <a className="cta primary" href={current.repo} target="_blank" rel="noreferrer"><Github /> View on GitHub</a>
+              <div className="feature-actions">
+                <a className="cta primary" href={current.repo} target="_blank" rel="noopener noreferrer"><Github /> Repository</a>
+                {current.demo && <a className="cta" href={current.demo} target="_blank" rel="noopener noreferrer">Live demo <ArrowUpRight /></a>}
+              </div>
             </motion.article>
           </AnimatePresence>
         </div>
@@ -262,9 +280,9 @@ function Portfolio() {
         <div className="path">
           <i className="path-flow" />
           {[
-            ["2026 — Present", "IIT Madras · BS Data Science & Applications", "Foundation Level — Statistics, Mathematics, Computational Thinking, English.", true],
-            ["Next", "Diploma Level", "Programming and Data Science diplomas — deeper ML, databases and applied systems.", false],
-            ["Destination", "BS Degree", "Production-ready intelligent systems built on a strong quantitative foundation.", false],
+            ["Current · 2026 — Present", "IIT Madras · BS in Data Science & Applications", "Foundation Level · Active student", true],
+            ["Upcoming", "Diploma Level", "A future stage in the programme — not yet completed.", false],
+            ["Future", "BS Degree Completion", "A future programme milestone — not yet completed.", false],
           ].map(([t, b, d, lit], i) => (
             <Reveal key={String(b)} delay={i * 0.15} className={lit ? "station lit" : "station"}><i /><time>{t}</time><b>{b}</b><p>{d}</p></Reveal>
           ))}
@@ -273,17 +291,17 @@ function Portfolio() {
 
       {/* 07 IDENTITY */}
       <WorldScene id="identity" bg={fantasyTemple} className="scene-identity" rocks="left">
-        <Heading n="07" label="Verified digital passports" title="Identity," em="verified." />
+        <Heading n="07" label="Linked digital profiles" title="Identity," em="connected." />
         <div className="passports">
           {[
-            { href: "https://study.iitm.ac.in/ds/", icon: GraduationCap, issuer: "IIT Madras", name: "BS in Data Science", line: "Active student · ID 26F2001172" },
-            { href: github, icon: Github, issuer: "GitHub", name: "@kamalsolanki143", line: "Python · TypeScript · AI · Open source" },
-            { href: linkedIn, icon: Linkedin, issuer: "LinkedIn", name: "Kamal Solanki", line: "Founder · Ambassador · Community builder" },
+            { href: iitMadras, icon: GraduationCap, issuer: "IIT Madras", name: "BS in Data Science & Applications", line: "Active student", label: "Official programme" },
+            { href: github, icon: Github, issuer: "GitHub", name: "@kamalsolanki143", line: "Python · AI · Open Source", label: "Linked profile" },
+            { href: linkedIn, icon: Linkedin, issuer: "LinkedIn", name: "Kamal Solanki", line: "Founder · Ambassador · Community Builder", label: "Linked profile" },
           ].map(({ icon: Icon, ...x }, i) => (
-            <motion.a key={x.issuer} href={x.href} target="_blank" rel="noreferrer" className="passport" initial={{ opacity: 0, y: 50, rotate: (i - 1) * 5 }} whileInView={{ opacity: 1, y: 0, rotate: (i - 1) * 3 }} whileHover={{ y: -10, rotate: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.9, delay: i * 0.12 }}>
+            <motion.a key={x.issuer} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${x.issuer} profile`} className="passport" initial={{ opacity: 0, y: 50, rotate: (i - 1) * 5 }} whileInView={{ opacity: 1, y: 0, rotate: (i - 1) * 3 }} whileHover={{ y: -10, rotate: 0, scale: 1.015 }} whileTap={{ scale: 0.985 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.9, delay: i * 0.12 }}>
               <span className="pp-issuer"><Icon /> {x.issuer}</span>
               <b>{x.name}</b><em>{x.line}</em>
-              <span className="pp-stamp"><ShieldCheck /> Verified</span>
+              <span className="pp-stamp"><ShieldCheck /> {x.label}</span>
             </motion.a>
           ))}
         </div>
@@ -302,10 +320,10 @@ function Portfolio() {
           </form>
         </Reveal>
         <Reveal delay={0.3} className="contact-links">
-          <button type="button" onClick={async () => { await navigator.clipboard.writeText(email); setCopied(true); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
-          <a href={github} target="_blank" rel="noreferrer"><Github /> GitHub</a>
-          <a href={linkedIn} target="_blank" rel="noreferrer"><Linkedin /> LinkedIn</a>
-          <a href="https://study.iitm.ac.in/ds/" target="_blank" rel="noreferrer"><GraduationCap /> IIT Madras</a>
+          <button type="button" onClick={async () => { setCopied(true); await copyEmail(email); }}>{copied ? <Check /> : <Copy />}{copied ? "Copied" : email}</button>
+          <a href={github} target="_blank" rel="noopener noreferrer"><Github /> GitHub</a>
+          <a href={linkedIn} target="_blank" rel="noopener noreferrer"><Linkedin /> LinkedIn</a>
+          <a href={iitMadras} target="_blank" rel="noopener noreferrer"><GraduationCap /> IIT Madras</a>
           <a href={`mailto:${email}`}><Mail /> Email</a>
         </Reveal>
         <footer className="world-foot"><span>Kamal Solanki · 2026</span><button type="button" onClick={() => goTo("home")}>Back to the beginning ↑</button></footer>
