@@ -127,9 +127,11 @@ function Portfolio() {
         </motion.div>
       </motion.div>
     }>
-      <p className="chapter-label">IIT Madras · AI · Data science · Full-stack</p><h1>KAMAL<br /><span>SOLANKI</span></h1>
+      <p className="chapter-label">IIT Madras · AI · Data science · Full-stack</p>
+      <GlowTitle />
       <p className="opening-copy">BS Data Science student crafting intelligent systems,<br />immersive products and open-source experiments.</p>
       <div className="hero-actions"><Button className="discover-button" onClick={() => goTo("about")}>Enter the world <ArrowDown /></Button><Button variant="outline" className="discover-button" onClick={() => goTo("projects")}>Explore work</Button></div>
+      <button type="button" className="scroll-cue" onClick={() => goTo("about")} aria-label="Scroll to about"><span /><em>Scroll</em></button>
     </Scene>
 
     <Scene id="about" image={waterfallHall} number="01" align="left" className="about-world">
