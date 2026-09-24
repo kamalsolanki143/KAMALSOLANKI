@@ -62,7 +62,7 @@
 /* Portrait */
 .portrait-card { float: right; width: min(260px, 38%); margin: 0 0 1.5rem 1.5rem; perspective: 900px; }
 .portrait-float { position: relative; border-radius: 1.5rem; padding: 6px; background: linear-gradient(160deg, oklch(0.75 0.18 330 / 0.7), oklch(0.6 0.2 290 / 0.4), oklch(0.75 0.12 220 / 0.6)); box-shadow: 0 30px 80px -20px oklch(0.6 0.25 320 / 0.6); transform-style: preserve-3d; }
-.portrait-float img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; border-radius: 1.2rem; filter: saturate(1.05) contrast(1.03); }
+.portrait-float img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: 50% 8%; border-radius: 1.2rem; image-rendering: auto; backface-visibility: hidden; transform: translateZ(0); }
 .portrait-ring { position: absolute; inset: -14px; border-radius: 2rem; border: 1px dashed oklch(0.8 0.15 320 / 0.6); animation: portrait-spin 18s linear infinite; pointer-events: none; }
 .portrait-float figcaption { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); white-space: nowrap; display: flex; gap: .4rem; align-items: center; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .4rem .8rem; border-radius: 999px; background: oklch(0.18 0.05 290 / 0.85); color: oklch(0.95 0.02 320); border: 1px solid oklch(0.8 0.15 320 / 0.4); backdrop-filter: blur(8px); }
 .portrait-float figcaption svg { width: 12px; height: 12px; }
@@ -74,7 +74,7 @@
 .hero-with-portrait .scene-content { max-width: 52%; }
 .hero-portrait { position: absolute; right: 5%; top: 50%; translate: 0 -50%; width: min(330px, 32%); z-index: 4; perspective: 1000px; }
 .hero-portrait-inner { position: relative; border-radius: 1.75rem; padding: 6px; background: linear-gradient(160deg, oklch(0.78 0.18 330), oklch(0.55 0.22 290), oklch(0.75 0.13 220)); box-shadow: 0 40px 90px -20px oklch(0.6 0.25 320 / 0.7); }
-.hero-portrait-inner img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; border-radius: 1.4rem; }
+.hero-portrait-inner img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: 50% 8%; border-radius: 1.4rem; backface-visibility: hidden; transform: translateZ(0); }
 .hero-halo { position: absolute; inset: -40px; border-radius: 50%; background: radial-gradient(circle, oklch(0.7 0.22 320 / 0.45), transparent 65%); filter: blur(20px); z-index: -1; animation: halo-pulse 4s ease-in-out infinite; }
 .hero-chip { position: absolute; font-size: .72rem; font-weight: 600; letter-spacing: .06em; padding: .45rem .85rem; border-radius: 999px; background: oklch(0.18 0.05 290 / 0.85); color: oklch(0.95 0.02 320); border: 1px solid oklch(0.8 0.15 320 / 0.5); backdrop-filter: blur(8px); animation: chip-bob 4.5s ease-in-out infinite; white-space: nowrap; }
 .chip-a { top: 12%; left: -22%; } .chip-b { top: 48%; right: -20%; animation-delay: -1.5s; } .chip-c { bottom: 10%; left: -18%; animation-delay: -3s; }
