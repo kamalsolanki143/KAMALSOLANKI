@@ -155,7 +155,7 @@ footer { position: relative; z-index: 12; display: flex; justify-content: space-
   .scene-image { inset: -3% -48%; width: 196%; height: 106%; }
   .opening-scene .scene-image, .contact-world .scene-image { inset: -3% -43%; width: 186%; }
   .scene-content, .scene-right .scene-content { width: calc(100vw - 40px); margin: 100px 20px 72px; }
-  .scene-content h1 { font-size: clamp(3.7rem, 19vw, 6rem); }
+  .scene-content h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
   .scene-content h2 { font-size: clamp(2.7rem, 13vw, 4.4rem); }
   .opening-copy br { display: none; }
   .scene-copy { font-size: 14px; line-height: 1.65; }
