@@ -7,7 +7,7 @@ import mountainCity from "@/assets/reference-city.jpg";
 import waterfallHall from "@/assets/reference-waterfall.jpg";
 import industrialGallery from "@/assets/reference-industrial.jpg";
 import riverTemple from "@/assets/reference-sunset.jpg";
-import portrait from "@/assets/kamal-portrait.png.asset.json";
+import portrait from "@/assets/kamal-portrait-sharp.jpg.asset.json";
 
 const PortfolioScene = lazy(() => import("@/components/portfolio-scene"));
 const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369";
