@@ -12,7 +12,6 @@ import fantasyTemple from "@/assets/cinematic-river-temple.webp";
 import bridgeLayer from "@/assets/layer-bridge.webp";
 import cloudLayer from "@/assets/layer-clouds.webp";
 import rockLayer from "@/assets/layer-foreground.webp";
-import portrait from "@/assets/kamal-portrait-sharp.jpg.asset.json";
 
 const linkedIn = "https://www.linkedin.com/in/kamal-solanki-612ba5369/";
 const github = "https://github.com/kamalsolanki143";
@@ -52,7 +51,6 @@ const achievements = [
   { year: "2026", title: "Campus Ambassador — E-Cell IIT Bombay", text: "Promoting entrepreneurship, innovation and startup initiatives." },
   { year: "2026", title: "GirlsScript Summer of Code Contributor", text: "Contributing to open-source projects through the programme." },
   { year: "2026 →", title: "Founder — Compass Crew", text: "Leading a student community for AI, hackathons, startups and developer growth." },
-  { year: "2026", title: "Global Campus Ambassador — Swytchcode", text: "Driving developer engagement and community initiatives." },
 ];
 
 const skills = [
@@ -200,7 +198,7 @@ function Portfolio() {
           </motion.div>
           <motion.figure className="hero-portrait" style={{ y: portraitY }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 1.6 }}>
             <div className="arch-light" />
-            <div className="arch"><img src={portrait.url} alt="Kamal Solanki" width={1023} height={1537} /></div>
+            <div className="arch"><img src="/kamal-portrait.jpg" alt="Kamal Solanki" width={681} height={1024} /></div>
             <div className="arch-ledge" />
             <figcaption>Kamal Solanki · Rajasthan, India</figcaption>
           </motion.figure>
@@ -212,7 +210,7 @@ function Portfolio() {
       <WorldScene id="about" bg={waterfallImg} className="scene-about" rocks="left" clouds={false}>
         <div className="about-layout">
           <Reveal className="about-window">
-            <div className="window-frame"><img src={portrait.url} alt="Kamal Solanki portrait" loading="lazy" /></div>
+            <div className="window-frame"><img src="/kamal-portrait.jpg" alt="Kamal Solanki" width={681} height={1024} loading="lazy" /></div>
             <span className="window-plate">IIT Madras · Foundation Level</span>
           </Reveal>
           <div className="about-text">
